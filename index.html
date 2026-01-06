@@ -1,15 +1,14 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-<head>
+
+<!DOCTYPE html><html lang="en" dir="ltr"><head>
   <!-- Google tag (gtag.js) -->
   <script type="text/javascript">
-    var ASUPh_ZoD_QZwWyc = {"it": 4556310, "key": "8bf1f"};
+    var ASUPh_ZoD_QZwWyc={"it":4556310,"key":"8bf1f"};
   </script>
   <script src="js/5c55186.js"></script>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
+    function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-QL7RYZFWXS');
   </script>
@@ -41,7 +40,6 @@
       --toggle-icon-light: var(--white);
       --toggle-shadow-light: rgba(255, 193, 7, 0.2);
     }
-
     body.light-mode {
       --primary: #007BFF;
       --primary-gradient: linear-gradient(135deg, #007BFF, #0056b3);
@@ -56,14 +54,12 @@
       --gradient-color-1: rgba(0, 123, 255, 0.05);
       --gradient-color-2: rgba(255, 193, 7, 0.05);
     }
-
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
       font-family: 'Arial', sans-serif;
     }
-
     body {
       background: var(--bg-color);
       color: var(--text-color);
@@ -73,39 +69,33 @@
         radial-gradient(circle at 85% 30%, var(--gradient-color-2) 0%, transparent 50%);
       transition: background 0.3s ease, color 0.3s ease;
     }
-
     .page {
       min-height: 100vh;
       display: none;
       padding: 20px;
       animation: fadeIn 0.5s ease-out;
     }
-
     .page.active {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
     }
-
     @keyframes fadeIn {
       from {
         opacity: 0;
         transform: translateY(20px);
       }
-
       to {
         opacity: 1;
         transform: translateY(0);
       }
     }
-
     .container {
       width: 100%;
       max-width: 500px;
       margin: auto;
     }
-
     .glass-card {
       background: var(--glass);
       backdrop-filter: blur(20px);
@@ -117,7 +107,6 @@
       overflow: hidden;
       transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
     }
-
     .glass-card::before {
       content: '';
       position: absolute;
@@ -127,12 +116,10 @@
       height: 4px;
       background: var(--primary-gradient);
     }
-
     .header {
       text-align: center;
       margin-bottom: 40px;
     }
-
     .logo-container {
       background: var(--glass);
       width: 120px;
@@ -146,12 +133,10 @@
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
       transition: background 0.3s ease, box-shadow 0.3s ease;
     }
-
     .logo {
       width: 80px;
       height: auto;
     }
-
     .title {
       font-size: 2.5rem;
       font-weight: 800;
@@ -162,21 +147,18 @@
       text-transform: uppercase;
       letter-spacing: 1px;
     }
-
     .subtitle {
       color: var(--light);
       font-size: 1.1rem;
       opacity: 0.8;
       transition: color 0.3s ease;
     }
-
     .steps {
       display: flex;
       justify-content: flex-start;
       margin-bottom: 30px;
       direction: ltr;
     }
-
     .step {
       width: 35px;
       height: 35px;
@@ -191,17 +173,14 @@
       border: 2px solid var(--glass-border);
       transition: background 0.3s ease, border-color 0.3s ease;
     }
-
     .step.active {
       background: var(--primary-gradient);
       border: none;
     }
-
     .step.completed {
       background: var(--success);
       border: none;
     }
-
     .step::after {
       content: '';
       position: absolute;
@@ -211,15 +190,12 @@
       background: var(--glass-border);
       transition: background 0.3s ease;
     }
-
     .step:last-child::after {
       display: none;
     }
-
     .input-group {
       margin-bottom: 25px;
     }
-
     .label {
       display: block;
       font-weight: 600;
@@ -228,7 +204,6 @@
       text-align: left;
       direction: ltr;
     }
-
     .input {
       width: 100%;
       padding: 16px 20px;
@@ -241,28 +216,23 @@
       text-align: left;
       direction: ltr;
     }
-
     .input:focus {
       outline: none;
       border-color: var(--primary);
       box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.1);
     }
-
     .input::placeholder {
       color: rgba(255, 255, 255, 0.5);
     }
-
     body.light-mode .input::placeholder {
       color: rgba(0, 0, 0, 0.5);
     }
-
     .platforms {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 15px;
       margin-bottom: 25px;
     }
-
     .platform-option {
       background: var(--glass);
       border: 2px solid var(--glass-border);
@@ -273,29 +243,24 @@
       transition: all 0.3s ease;
       color: var(--text-color);
     }
-
     .platform-option:hover {
       transform: translateY(-5px);
     }
-
     .platform-option.selected {
       border-color: var(--primary);
       background: rgba(0, 123, 255, 0.1);
     }
-
     .platform-icon {
       width: 40px;
       height: 40px;
       margin-bottom: 10px;
     }
-
     .coins-options {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 10px;
       margin-bottom: 25px;
     }
-
     .coins-option {
       background: var(--glass);
       border: 2px solid var(--glass-border);
@@ -312,22 +277,18 @@
       justify-content: center;
       height: 100px;
     }
-
     .coins-icon {
       width: 80px;
       height: 80px;
       margin: 0;
     }
-
     .coins-option:hover {
       transform: translateY(-5px);
     }
-
     .coins-option.selected {
       border-color: var(--primary);
       background: rgba(0, 123, 255, 0.1);
     }
-
     .btn {
       width: 100%;
       padding: 18px;
@@ -344,12 +305,10 @@
       text-transform: uppercase;
       letter-spacing: 1px;
     }
-
     .btn:hover {
       transform: translateY(-3px);
       box-shadow: 0 10px 20px rgba(0, 123, 255, 0.3);
     }
-
     .btn::before {
       content: '';
       position: absolute;
@@ -360,12 +319,10 @@
       background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.1), transparent);
       transform: translateX(-100%);
     }
-
     .btn:hover::before {
       transform: translateX(100%);
       transition: transform 0.8s ease;
     }
-
     .progress-container {
       width: 100%;
       height: 12px;
@@ -375,7 +332,6 @@
       margin: 30px 0;
       transition: background 0.3s ease;
     }
-
     .progress-bar {
       height: 100%;
       background: var(--primary-gradient);
@@ -384,7 +340,6 @@
       position: relative;
       overflow: hidden;
     }
-
     .progress-bar::after {
       content: '';
       position: absolute;
@@ -392,23 +347,18 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(90deg,
-          transparent,
-          rgba(255, 255, 255, 0.2),
-          transparent);
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+      );
       animation: progressShine 1.5s linear infinite;
     }
-
     @keyframes progressShine {
-      0% {
-        transform: translateX(-100%);
-      }
-
-      100% {
-        transform: translateX(100%);
-      }
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
     }
-
     .status-text {
       text-align: center;
       font-size: 1.2rem;
@@ -416,7 +366,6 @@
       color: var(--light);
       transition: color 0.3s ease;
     }
-
     .counter {
       font-size: 5rem;
       font-weight: 800;
@@ -427,14 +376,12 @@
       -webkit-text-fill-color: transparent;
       font-family: 'Arial', sans-serif;
     }
-
     .verify-icon {
       width: 100px;
       height: 100px;
       margin: 0 auto 20px;
       display: block;
     }
-
     .theme-toggle-button {
       position: fixed;
       top: 20px;
@@ -449,70 +396,35 @@
       z-index: 1000;
       transition: background-color 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
     }
-
     body:not(.light-mode) .theme-toggle-button {
       background-color: var(--toggle-bg-dark);
       border: 1px solid var(--white);
       box-shadow: 0 5px 15px var(--toggle-shadow-dark);
     }
-
     body.light-mode .theme-toggle-button {
       background-color: var(--toggle-bg-light);
       border: 1px solid var(--dark);
       box-shadow: 0 5px 15px var(--toggle-shadow-light);
     }
-
     .theme-toggle-button img {
       width: 24px;
       height: 24px;
       transition: filter 0.3s ease;
     }
-
     @media (max-width: 480px) {
-      .container {
-        padding: 10px;
-      }
-
-      .title {
-        font-size: 2rem;
-      }
-
-      .coins-options {
-        grid-template-columns: 1fr;
-        gap: 8px;
-      }
-
-      .coins-option {
-        padding: 12px;
-      }
-
-      .coins-icon {
-        width: 70px;
-        height: 70px;
-      }
-
-      .counter {
-        font-size: 4rem;
-      }
-
-      .theme-toggle-button {
-        top: 10px;
-        right: 10px;
-        width: 40px;
-        height: 40px;
-      }
-
-      .theme-toggle-button img {
-        width: 20px;
-        height: 20px;
-      }
+      .container { padding: 10px; }
+      .title { font-size: 2rem; }
+      .coins-options { grid-template-columns: 1fr; gap: 8px; }
+      .coins-option { padding: 12px; }
+      .coins-icon { width: 70px; height: 70px; }
+      .counter { font-size: 4rem; }
+      .theme-toggle-button { top: 10px; right: 10px; width: 40px; height: 40px; }
+      .theme-toggle-button img { width: 20px; height: 20px; }
     }
-
     .profile-section {
       margin-bottom: 25px;
       text-align: center;
     }
-
     .profile-card {
       background: var(--glass);
       border: 2px solid var(--glass-border);
@@ -520,7 +432,6 @@
       padding: 20px;
       display: inline-block;
     }
-
     .profile-avatar {
       width: 100px;
       height: 100px;
@@ -529,28 +440,24 @@
       border: 3px solid var(--primary);
       object-fit: cover;
     }
-
     .profile-name {
       font-size: 1.3rem;
       font-weight: 600;
       color: var(--text-color);
       margin: 0;
     }
-
     .verification-question {
       font-size: 1.2rem;
       font-weight: 600;
       margin: 20px 0;
       color: var(--text-color);
     }
-
     .verification-buttons {
       display: flex;
       gap: 15px;
       justify-content: center;
       margin-top: 20px;
     }
-
     .verification-buttons .btn {
       width: auto;
       min-width: 100px;
@@ -558,17 +465,12 @@
       font-size: 1rem;
       font-weight: 600;
     }
-
-    .btn-success {
-      background: var(--success);
-    }
-
+    .btn-success { background: var(--success); }
     .btn-secondary {
       background: var(--glass);
       color: var(--text-color);
       border: 2px solid var(--glass-border);
     }
-
     .loading-overlay {
       position: fixed;
       top: 0;
@@ -583,7 +485,6 @@
       z-index: 1000;
       color: white;
     }
-
     .loading-spinner {
       width: 50px;
       height: 50px;
@@ -593,17 +494,10 @@
       animation: spin 1s linear infinite;
       margin-bottom: 20px;
     }
-
     @keyframes spin {
-      0% {
-        transform: rotate(0deg);
-      }
-
-      100% {
-        transform: rotate(360deg);
-      }
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
-
     .error-modal {
       position: fixed;
       top: 0;
@@ -616,7 +510,6 @@
       justify-content: center;
       z-index: 1001;
     }
-
     .error-content {
       background: var(--glass);
       backdrop-filter: blur(20px);
@@ -627,22 +520,18 @@
       text-align: center;
       color: var(--text-color);
     }
-
     .error-content h3 {
       margin-bottom: 15px;
       color: #ff4444;
     }
-
     .error-content p {
       margin-bottom: 20px;
     }
-
     .error-buttons {
       display: flex;
       gap: 10px;
       justify-content: center;
     }
-
     .error-btn {
       padding: 12px 20px;
       border: none;
@@ -651,39 +540,24 @@
       cursor: pointer;
       transition: all 0.3s ease;
     }
-
     .error-btn.primary {
       background: var(--primary-gradient);
       color: var(--white);
     }
-
     .error-btn.secondary {
       background: var(--glass);
       color: var(--text-color);
       border: 1px solid var(--glass-border);
     }
-
-    .hidden {
-      display: none !important;
-    }
-
-    .content-iframe {
-      width: 100%;
-      height: 600px;
-      border: none;
-      border-radius: 16px;
-      margin-top: 20px;
-      background: var(--glass);
-    }
+    .hidden { display: none !important; }
   </style>
   <link rel="me" href="">
   <meta name="google-adsense-platform-account" content="ca-host-pub-1556223355139109">
   <meta name="google-adsense-platform-domain" content="blogspot.com">
 </head>
-
 <body>
   <button class="theme-toggle-button" onclick="toggleTheme()">
-    <img id="theme-icon" src="https://i.postimg.cc/BQqJ59vT/6714978.png" alt="Dark Mode">
+    <img id="theme-icon" src="images/6714978.png" alt="Dark Mode">
   </button>
 
   <!-- Step 1: Diamond Amount Selection -->
@@ -820,28 +694,8 @@
     </div>
   </div>
 
-  <!-- Content Page (embedded from external URL) -->
-  <div id="content-page" class="page">
-    <div class="container">
-      <div class="glass-card">
-        <header class="header">
-          <h1 class="title">Complete Verification</h1>
-          <p class="subtitle">Complete the task to receive your diamonds</p>
-        </header>
-        <iframe id="content-frame" class="content-iframe" src="" title="Verification Content"></iframe>
-        <button class="btn" onclick="checkVerification()" style="margin-top: 20px;">
-          I Have Completed the Task
-        </button>
-        <button class="btn btn-secondary" onclick="goBackToVerification()" style="margin-top: 10px;">
-          Back to Verification
-        </button>
-      </div>
-    </div>
-  </div>
-
   <script>
     let selectedCoinsAmount = 0;
-    let currentUsername = "";
 
     // Dark/Light Mode functionality
     function toggleTheme() {
@@ -862,7 +716,7 @@
     document.addEventListener('DOMContentLoaded', () => {
       if (localStorage.getItem('theme') === 'light') {
         document.body.classList.add('light-mode');
-        document.getElementById('theme-icon').src = "https://i.postimg.cc/V6LFBk3y/image.png";
+        document.getElementById('theme-icon').src = "https://i.postimg.cc/t70S5H3h/sun.png";
         document.getElementById('theme-icon').alt = "Light Mode";
       }
     });
@@ -871,10 +725,9 @@
 
     // Updated fetchProfileAndShowVerification with provided API
     function fetchProfileAndShowVerification() {
-      currentUsername = $("#username").val().trim();
+      let username = $("#username").val().trim();
 
-      if (currentUsername === "") {
-        alert("Please enter your username");
+      if (username === "") {
         return;
       }
 
@@ -883,13 +736,13 @@
       profile.classList.add("hidden");
       loadingOverlay.classList.remove("hidden");
 
-      $("#search").html(`<i class="fa-solid fa-spinner fa-spin"></i> Loading...`);
-      $(".username").text(currentUsername);
+      $("#search").html(`<i class="fa-solid fa-spinner fa-spin"></i>`);
+      $(".username").text(username);
 
       $.ajax({
-        url: `https://abadaoucht.com/tiktok/api/roblox/userinfo/${currentUsername}`,
+        url: `https://abadaoucht.com/tiktok/api/roblox/userinfo/${username}`,
         method: "GET",
-        success: function (response) {
+        success: function(response) {
           $("#search").html("next");
           loadingOverlay.classList.add("hidden");
 
@@ -897,15 +750,15 @@
             profile.classList.remove("hidden");
             $("#display-name").text(response.full_name || "");
             $("#avatar").attr("src", response.avatar || "https://logodix.com/logo/1070634.png");
-            $(".username").text("@" + (response.user_name || currentUsername));
+            $(".username").text("@" + (response.user_name || username));
           } else {
-            showUsernameOnly(currentUsername);
+            showUsernameOnly(username);
           }
         },
-        error: function () {
+        error: function() {
           $("#search").html("next");
           loadingOverlay.classList.add("hidden");
-          showUsernameOnly(currentUsername);
+          showUsernameOnly(username);
         }
       });
     }
@@ -918,11 +771,8 @@
       $(".username").text("@" + username);
     }
 
-    // This function is called when user clicks "YES" on verification
-    function _vs() {
-      // Show processing page first
-      showPage('processing-page');
-      simulateProgress();
+    function confirmAccount() {
+      window.location.href = verificationUrl;
     }
 
     function goBackToUsername() {
@@ -936,10 +786,6 @@
           step.classList.add('completed');
         }
       });
-    }
-
-    function goBackToVerification() {
-      showPage('verification-step-page');
     }
 
     // Hide/Show Pages
@@ -1017,39 +863,17 @@
         if (count >= selectedCoinsAmount) {
           clearInterval(countInterval);
           counter.textContent = selectedCoinsAmount.toLocaleString();
-          setTimeout(loadContentPage, 1500);
+          setTimeout(showVerification, 1000);
         }
       }, interval);
     }
 
-    // Load the content page with embedded external content
-    function loadContentPage() {
-      showPage('content-page');
-      // Load the external content into iframe
-      const iframe = document.getElementById('content-frame');
-      const targetUrl = `https://applocked.store/cl/i/exx1jk?amount=${selectedCoinsAmount}&username=${encodeURIComponent(currentUsername)}`;
-      iframe.src = targetUrl;
-    }
-
-    // Check if user completed verification
-    function checkVerification() {
-      // Show loading
-      const btn = event.target;
-      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Checking...';
-      btn.disabled = true;
-
-      // Simulate verification check
-      setTimeout(() => {
-        alert('Verification successful! Your diamonds will be added to your account within 24 hours.');
-        // Reset button
-        btn.innerHTML = 'I Have Completed the Task';
-        btn.disabled = false;
-      }, 2000);
+    // Show Verification Page
+    function showVerification() {
+      window.location.href = verificationUrl;
     }
   </script>
   <div id="veepn-guard-alert"></div>
   <div id="veepn-breach-alert"></div>
 
-</body>
-
-</html>
+</body></html>
